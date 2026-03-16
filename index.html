@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MartyyyK · bio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0d15;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            color: #e4e6f0;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(80, 100, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(140, 70, 255, 0.15) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            width: 100%;
+            background: rgba(15, 17, 26, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(80, 100, 255, 0.2) inset;
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.8), 0 0 0 2px rgba(80, 100, 255, 0.3) inset;
+        }
+
+        .avatar-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5064ff, #8a4cff);
+            padding: 3px;
+            box-shadow: 0 15px 30px -8px rgba(80, 100, 255, 0.5);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0b0d15;
+            background: #1a1d2e;
+            display: block;
+        }
+
+        .top-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .top-buttons .btn {
+            flex: 1;
+            background: rgba(25, 28, 40, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            padding: 0.9rem 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 20px -10px rgba(0,0,0,0.5);
+        }
+
+        .top-buttons .btn i {
+            font-size: 1.2rem;
+            color: #5064ff;
+            transition: color 0.2s;
+        }
+
+        .top-buttons .btn:hover {
+            background: rgba(80, 100, 255, 0.2);
+            border-color: rgba(80, 100, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -8px #5064ff40;
+        }
+
+        .top-buttons .btn:hover i {
+            color: #ffffff;
+        }
+
+        .about-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f0f2ff;
+        }
+
+        .section-title i {
+            color: #5064ff;
+        }
+
+        .about-text {
+            background: rgba(20, 22, 32, 0.5);
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            color: #b0b8d0;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-btn {
+            background: rgba(20, 22, 32, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 1rem 0.8rem;
+            color: #ffffff;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            width: 100%;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .project-btn i {
+            font-size: 1.2rem;
+            color: #5064ff;
+            transition: color 0.2s;
+        }
+
+        .project-btn:hover {
+            background: rgba(80, 100, 255, 0.15);
+            border-color: rgba(80, 100, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -8px #5064ff40;
+        }
+
+        .project-btn:hover i {
+            color: #ffffff;
+        }
+
+        .order-section {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .order-btn {
+            background: linear-gradient(135deg, #5064ff, #7a4cff);
+            border: none;
+            border-radius: 40px;
+            padding: 1rem 2rem;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 15px 30px -10px #5064ff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .order-btn i {
+            font-size: 1.3rem;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 35px -8px #5064ff;
+            background: linear-gradient(135deg, #6074ff, #8a5cff);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: rgba(20, 22, 32, 0.95);
+            border: 1px solid rgba(80, 100, 255, 0.3);
+            border-radius: 32px;
+            max-width: 400px;
+            width: 90%;
+            padding: 2rem;
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(80,100,255,0.3) inset;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #f0f2ff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal h3 i {
+            color: #5064ff;
+        }
+
+        .modal-description {
+            color: #b0b8d0;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .modal-btn.close {
+            background: rgba(255, 255, 255, 0.05);
+            color: #b0b8d0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-btn.close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .modal-btn.goto {
+            background: #5064ff;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #5064ff;
+        }
+
+        .modal-btn.goto:hover {
+            background: #3a4fd0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -5px #5064ff;
+        }
+
+        .modal-btn.goto i {
+            font-size: 0.9rem;
+        }
+
+        .order-modal .modal {
+            max-width: 450px;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: #b0b8d0;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(10, 12, 20, 0.7);
+            border: 1px solid rgba(80, 100, 255, 0.2);
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #5064ff;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #5064ff;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 0.9rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #3a4fd0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -5px #5064ff;
+        }
+
+        .form-status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #b0b8d0;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 1.8rem 1.2rem;
+            }
+            .top-buttons {
+                flex-direction: column;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="avatar-wrapper">
+            <div class="avatar">
+                <img src="https://raw.githubusercontent.com/MartyyyK/martyyyk.github.io-bio/main/avatar.png" alt="avatar">
+            </div>
+        </div>
+
+        <div class="top-buttons">
+            <a href="https://t.me/MartyyyK" target="_blank" rel="noopener" class="btn">
+                <i class="fab fa-telegram-plane"></i> Телеграм
+            </a>
+            <a href="https://t.me/bio_MartyyyK" target="_blank" rel="noopener" class="btn">
+                <i class="fab fa-telegram-plane"></i> Телеграм био
+            </a>
+        </div>
+
+        <div class="about-section">
+            <h2 class="section-title">
+                <i class="fas fa-user"></i> Обо мне
+            </h2>
+            <div class="about-text">
+                Привет!<br> Я Мартик, занимаюсь разработкой на Python.<br>
+                Немного FrontEnd и BackEnd разработчик.<br>
+                Здесь собраны мои проекты и ссылки.
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            <i class="fas fa-folder-open"></i> Мои работы
+        </h2>
+        <div class="projects-grid">
+            <button class="project-btn" data-description="Hisa - модульный Telegram юзербот с поддержкой плагинов и полной кастомизацией." data-url="https://t.me/Hisa_ub">
+                <i class="fab fa-telegram"></i> Hisa Userbot
+            </button>
+            <button class="project-btn" data-description="MRTKsm - утилита для создания и управления Minecraft серверами для Termux." data-url="https://t.me/MartyyyKsm">
+                <i class="fab fa-telegram"></i> MRTKsm
+            </button>
+            <button class="project-btn" data-description="Скоро будут ещё проекты." data-url="">
+                <i class="fab fa-telegram"></i> Тут пока пусто
+            </button>
+<!--            <button class="project-btn" data-description="" data-url="">
+                <i class="fab fa-telegram"></i> 
+            </button>
+-->
+        </div>
+
+        <div class="order-section">
+            <button class="order-btn" id="orderBtn">
+                <i class="fab fa-python"></i> Заказать Python проект
+            </button>
+        </div>
+
+        <div style="margin-top: 2rem; text-align: center; font-size: 0.85rem; color: #5f6b8a; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 1.5rem;">
+            ✦ всегда в процессе ✦<br>
+            © 2026 MartyyyK. All rights reserved.
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h3><i class="fas fa-info-circle"></i> Описание</h3>
+            <div class="modal-description" id="modalDescription">
+                Текст описания будет подставлен сюда.
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn close" id="closeModalBtn">Закрыть</button>
+                <a href="#" target="_blank" class="modal-btn goto" id="gotoLink">
+                    <span>Перейти</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="orderModalOverlay">
+        <div class="modal order-modal">
+            <h3><i class="fab fa-python"></i> Заказ Python проекта</h3>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя (необязательно)</label>
+                    <input type="text" id="name" name="name" placeholder="Как к вам обращаться">
+                </div>
+                <div class="form-group">
+                    <label for="contact">Контакт для связи (телеграм/email) *</label>
+                    <input type="text" id="contact" name="contact" placeholder="@username или email" required>
+                </div>
+                <div class="form-group">
+                    <label for="query">Опишите задачу *</label>
+                    <textarea id="query" name="query" placeholder="Что нужно сделать?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить заказ</button>
+                <div class="form-status" id="formStatus"></div>
+            </form>
+            <div style="margin-top: 1rem; text-align: right;">
+                <button class="modal-btn close" id="closeOrderModalBtn">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const TELEGRAM_BOT_TOKEN = '8643037146:AAGoukfXZQMBrA_6FUNnc9OVcp6gG-nYRKc';
+        const TELEGRAM_CHAT_ID = '7773650295';
+
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalDescription = document.getElementById('modalDescription');
+        const gotoLink = document.getElementById('gotoLink');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const projectBtns = document.querySelectorAll('.project-btn');
+
+        function openProjectModal(description, url) {
+            modalDescription.textContent = description;
+            gotoLink.href = url;
+            modalOverlay.classList.add('active');
+        }
+
+        function closeProjectModal() {
+            modalOverlay.classList.remove('active');
+        }
+
+        projectBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const description = btn.getAttribute('data-description');
+                const url = btn.getAttribute('data-url');
+                openProjectModal(description, url);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeProjectModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeProjectModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeProjectModal();
+        });
+
+        const orderModalOverlay = document.getElementById('orderModalOverlay');
+        const orderBtn = document.getElementById('orderBtn');
+        const closeOrderBtn = document.getElementById('closeOrderModalBtn');
+        const orderForm = document.getElementById('orderForm');
+        const formStatus = document.getElementById('formStatus');
+
+        function openOrderModal() {
+            orderModalOverlay.classList.add('active');
+            formStatus.textContent = '';
+            orderForm.reset();
+        }
+
+        function closeOrderModal() {
+            orderModalOverlay.classList.remove('active');
+        }
+
+        orderBtn.addEventListener('click', openOrderModal);
+        closeOrderBtn.addEventListener('click', closeOrderModal);
+        orderModalOverlay.addEventListener('click', (e) => {
+            if (e.target === orderModalOverlay) closeOrderModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && orderModalOverlay.classList.contains('active')) closeOrderModal();
+        });
+
+        orderForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID') {
+                formStatus.textContent = 'Ошибка: не настроен Telegram Bot. Замените токен и chat_id в коде.';
+                formStatus.style.color = '#ff6b6b';
+                return;
+            }
+
+            const name = document.getElementById('name').value.trim() || 'Не указано';
+            const contact = document.getElementById('contact').value.trim();
+            const query = document.getElementById('query').value.trim();
+
+            if (!contact || !query) {
+                formStatus.textContent = 'Пожалуйста, заполните контакт и описание задачи.';
+                formStatus.style.color = '#ff6b6b';
+                return;
+            }
+
+            const message = `Новый заказ от ${name}\nКонтакт: ${contact}\n\nЗапрос:\n${query}`;
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            try {
+                formStatus.textContent = 'Отправка...';
+                formStatus.style.color = '#b0b8d0';
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    formStatus.textContent = 'Заказ успешно отправлен! Я свяжусь с вами.';
+                    formStatus.style.color = '#6bff8c';
+                    setTimeout(() => {
+                        closeOrderModal();
+                    }, 2000);
+                } else {
+                    throw new Error(data.description || 'Ошибка отправки');
+                }
+            } catch (error) {
+                console.error(error);
+                formStatus.textContent = 'Ошибка при отправке. Попробуйте позже.';
+                formStatus.style.color = '#ff6b6b';
+            }
+        });
+    </script>
+</body>
+</html>
